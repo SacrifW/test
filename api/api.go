@@ -17,7 +17,7 @@ func CalculateTotal(c *gin.Context) {
 		log.Println("api.go -> CalculateTotal() -> ParseUint() -> error:", err)
 		return
 	}
-	blockNumberFl := float32(blockNumber)
+	blockNumberFl := int(blockNumber)
 
 	countTransactions, amountTransactions, err := service.CalculateCountAndAmountOfTransactions(blockNumberFl)
 	if err != nil {

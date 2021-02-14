@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"log"
-	"math"
 )
 
 type dataBaseModule struct {
@@ -13,7 +12,7 @@ type dataBaseModule struct {
 	collection *mgo.Collection
 }
 
-func GetBlock(blockNumber float32) (models.Block, error) {
+func GetBlock(blockNumber int) (models.Block, error) {
 	var block models.Block
 
 	var session, err = mgo.Dial("mongodb://127.0.0.1")
@@ -24,11 +23,10 @@ func GetBlock(blockNumber float32) (models.Block, error) {
 
 	var dbModule = &dataBaseModule{
 		session:    session,
-		collection: session.DB("blockDB").C("blocks"),
+		collection: session.DB("BlockDB").C("blocks"),
 	}
 
-	blockNumberStr := fmt.Sprintf("0x%x", math.Float32bits(blockNumber))
-fmt.Println(blockNumberStr)
+	blockNumberStr := fmt.Sprintf("0x%x", blockNumber)
 	filter := models.Obj{"result.transactions.blockNumber": blockNumberStr}
 
 	if err := dbModule.collection.Find(filter).One(&block); err != nil {

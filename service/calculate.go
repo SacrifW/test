@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"strings"
 )
 
- func CalculateCountAndAmountOfTransactions (blockNumber float32) (int, float64, error) {
+ func CalculateCountAndAmountOfTransactions (blockNumber int) (int, float64, error) {
 	 var amountTransactions float64
 	 block, err := db.GetBlock(blockNumber)
 	 if err != nil {
@@ -19,11 +20,12 @@ import (
 
 	 for v := range block.Result.Transactions {
 		 start := block.Result.Transactions[v].Value
-		 result, err := strconv.ParseFloat(start, 64)
+		 start = strings.Replace(start, "0x", "", -1)
+		 result, err := strconv.ParseUint(start, 16, 64)
 		 if err != nil {
 			 fmt.Println("calculate.go -> CalculateCountAndAmountOfTransactions() -> ParseFloat() -> error: ", err)
 		 }
-		 amountTransactions += result
+		 amountTransactions += float64(result)
 	 }
 
 	 return countTransactions, amountTransactions, nil
