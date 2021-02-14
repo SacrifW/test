@@ -3,9 +3,11 @@ package api
 import (
 	"../models"
 	"../service"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"strconv"
+	"strings"
 )
 
 func CalculateTotal(c *gin.Context) {
@@ -25,5 +27,13 @@ func CalculateTotal(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, models.Obj{"transactions": countTransactions, "amount": amountTransactions})
+	s := fmt.Sprintf("%e", amountTransactions)
+	amount := strings.Split(s, "e")
+
+	if len(amount) == 0 {
+		return
+	}
+	amountTransactionsStr := amount[0]
+
+	c.JSON(200, models.Obj{"transactions": countTransactions, "amount": amountTransactionsStr})
 }

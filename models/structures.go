@@ -10,23 +10,23 @@ type (
 	}
 
 	Result struct {
-		Difficulty      string `bson:"difficulty"`
-		ExtraData       string `bson:"extraData"`
-		GasLimit        string `bson:"gasLimit"`
-		GasUsed         string `bson:"gasUsed"`
-		Hash            string `bson:"hash"`
-		LogsBloom       string `bson:"logsBloom"`
-		Miner           string `bson:"miner"`
-		MixHash         string `bson:"mixHash"`
-		Nonce           string `bson:"nonce"`
-		Number          string `bson:"number"`
-		ParentHash      string `bson:"parentHash"`
-		ReceiptsRoot    string `bson:"receiptsRoot"`
-		Sha3Uncles      string `bson:"sha3Uncles"`
-		Size            string `bson:"size"`
-		StateRoot       string `bson:"stateRoot"`
-		Timestamp       string `bson:"timestamp"`
-		TotalDifficulty string `bson:"totalDifficulty"`
+		Difficulty      string        `bson:"difficulty"`
+		ExtraData       string        `bson:"extraData"`
+		GasLimit        string        `bson:"gasLimit"`
+		GasUsed         string        `bson:"gasUsed"`
+		Hash            string        `bson:"hash"`
+		LogsBloom       string        `bson:"logsBloom"`
+		Miner           string        `bson:"miner"`
+		MixHash         string        `bson:"mixHash"`
+		Nonce           string        `bson:"nonce"`
+		Number          string        `bson:"number"`
+		ParentHash      string        `bson:"parentHash"`
+		ReceiptsRoot    string        `bson:"receiptsRoot"`
+		Sha3Uncles      string        `bson:"sha3Uncles"`
+		Size            string        `bson:"size"`
+		StateRoot       string        `bson:"stateRoot"`
+		Timestamp       string        `bson:"timestamp"`
+		TotalDifficulty string        `bson:"totalDifficulty"`
 		Transactions    []Transaction `bson:"transactions"`
 	}
 	Transaction struct {
