@@ -35,14 +35,13 @@ func TestCalculateTotal(t *testing.T) {
 		amountTransactions += fl2
 	}
 
-	//fmt.Println("3", amountStr)
 	s := fmt.Sprintf("%e", amountTransactions)
 	amount := strings.Split(s, "e")
 
 	if len(amount) == 0 {
 		return
 	}
-	
+
 	amountTransactionsStr := amount[0]
 
 	t.Log("count:", countTransactions, "amount", amountTransactionsStr)
