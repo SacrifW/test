@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestCalculateTotal(t *testing.T) {
+func TestCalculateCountAndAmountOfTransactions(t *testing.T) {
 	firstBlock := models.Block{
 		Result: models.Result{Transactions: []models.Transaction{{Value: "0x38d7ea4c68000"}, {Value: "0x4edec84a038000"}, {Value: "0x2ee5547f090000"}}},
 	}
