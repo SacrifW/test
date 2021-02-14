@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
- func CalculateCountAndAmountOfTransactions (blockNumber uint64) (int, float64, error) {
+ func CalculateCountAndAmountOfTransactions (blockNumber float32) (int, float64, error) {
 	 var amountTransactions float64
 	 block, err := db.GetBlock(blockNumber)
 	 if err != nil {

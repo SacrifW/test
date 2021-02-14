@@ -14,11 +14,16 @@ func CalculateTotal(c *gin.Context) {
 
 	blockNumber, err := strconv.ParseUint(BlockNumberParam, 10, 64)
 	if err != nil {
-		log.Println("api.go -> CalculateTotal() -> error:", err)
+		log.Println("api.go -> CalculateTotal() -> ParseUint() -> error:", err)
 		return
 	}
+	blockNumberFl := float32(blockNumber)
 
-	countTransactions, amountTransactions := service.CalculateCountAndAmountOfTransactions(blockNumber)
+	countTransactions, amountTransactions, err := service.CalculateCountAndAmountOfTransactions(blockNumberFl)
+	if err != nil {
+		log.Println("api.go -> CalculateTotal() -> CalculateCountAndAmountOfTransactions() -> error:", err)
+		return
+	}
 
 	c.JSON(200, models.Obj{"transactions": countTransactions, "amount": amountTransactions})
 }

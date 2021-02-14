@@ -2,8 +2,8 @@ package service
 
 import (
 	"../models"
-	"fmt"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -20,15 +20,20 @@ func TestCalculateTotal(t *testing.T) {
 
 	for v := range block.Result.Transactions {
 		start := block.Result.Transactions[v].Value
-		fmt.Println("454454", start)
-		//result, err := strconv.ParseInt("0x1c8", 0, 64)
-		result, err := strconv.ParseFloat(start, 32)
-		fmt.Println("sfsfsefs", result)
+		start = strings.Replace(start, "0x", "", -1)
+		//fmt.Println("1", start)
+
+		result, err := strconv.ParseUint(start, 16, 64)
 		if err != nil {
-			t.Errorf("err: %v", err)
+			t.Errorf("Error: %v", err)
 		}
-		amountTransactions += result
+		//fmt.Println("2", result)
+
+		amountTransactions += float64(result)
 	}
 
-	t.Log("count:", countTransactions, "amount", amountTransactions)
+	amountStr := strconv.Itoa(int(amountTransactions))
+	//fmt.Println("3", amountStr)
+
+	t.Log("count:", countTransactions, "amount", amountStr)
 }
